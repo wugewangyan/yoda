@@ -6,7 +6,7 @@ import org.springframework.stereotype.Component;
 @Component
 public class ConfigBean {
 
-	
+	// haole 
 	@Value("${mail.transport.protocol}")
 	private String mailProtocol;		
 	

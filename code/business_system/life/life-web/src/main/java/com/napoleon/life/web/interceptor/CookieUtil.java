@@ -29,6 +29,7 @@ public class CookieUtil {
 		String cookieValue = lifeUser.getE() + ":" + validTime + ":" + cookieValueWithMd5;
 		// 再一次对Cookie的值进行BASE64编码
 		String cookieValueBase64 = CryptUtil.encrypt(cookieValue, Constants.COOKIE_SECURE_KEY);
+		// wozhenbuzhidao weishenm
 		// 开始保存Cookie
 		Cookie cookie = new Cookie(Constants.COOKIE_NAME, cookieValueBase64);
 
