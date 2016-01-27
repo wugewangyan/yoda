@@ -1,0 +1,180 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="LifeRun">
+	<resultMap id="BaseResultMap" type="com.napoleon.life.core.entity.LifeRun">
+		<id column="id" property="id" jdbcType="BIGINT" />
+		<result column="user_id" property="userId" jdbcType="VARCHAR" />
+		<result column="run_type" property="runType" jdbcType="VARCHAR" />
+		<result column="duration_time" property="durationTime"
+			jdbcType="TINYINT" />
+		<result column="distance" property="distance" jdbcType="INTEGER" />
+		<result column="address" property="address" jdbcType="VARCHAR" />
+		<result column="run_time" property="runTime" jdbcType="TIMESTAMP" />
+		<result column="year" property="year" jdbcType="INTEGER" />
+		<result column="month" property="month" jdbcType="TINYINT" />
+		<result column="day" property="day" jdbcType="TINYINT" />
+		<result column="week" property="week" jdbcType="TINYINT" />
+	</resultMap>
+	
+	<resultMap id="GroupByYearAndWeekMap" type="com.napoleon.life.core.bean.SumWeekRunBean">
+		<result column="week" property="week" jdbcType="TINYINT" />
+		<result column="totalDistance" property="totalDistance" jdbcType="INTEGER" />
+		<result column="totalTime" property="totalTime" jdbcType="INTEGER" />
+	</resultMap>
+	
+	<resultMap id="GroupByYearAndMonthMap" type="com.napoleon.life.core.bean.SumMonthRunBean">
+		<result column="month" property="month" jdbcType="TINYINT" />
+		<result column="totalDistance" property="totalDistance" jdbcType="INTEGER" />
+		<result column="totalTime" property="totalTime" jdbcType="INTEGER" />
+	</resultMap>
+
+	<sql id="Base_Column_List">
+		id, user_id, run_type, duration_time, distance, address,
+		run_time, year, month, day, week
+	</sql>
+
+	<insert id="insert" parameterType="com.napoleon.life.core.entity.LifeRun"
+		useGeneratedKeys="true" keyProperty="id">
+		INSERT INTO life_run ( user_id,
+		run_type, duration_time, distance, address,
+		run_time, year, month, day,
+		week ) VALUES( #{userId,
+		jdbcType=VARCHAR}, #{runType,
+		jdbcType=VARCHAR}, #{durationTime,
+		jdbcType=TINYINT}, #{distance,
+		jdbcType=INTEGER}, #{address,
+		jdbcType=VARCHAR}, #{runTime,
+		jdbcType=TIMESTAMP}, #{year,
+		jdbcType=INTEGER}, #{month,
+		jdbcType=TINYINT}, #{day,
+		jdbcType=TINYINT}, #{week, jdbcType=TINYINT}
+		)
+	</insert>
+
+	<update id="update" parameterType="com.napoleon.life.core.entity.LifeRun">
+		update LIFE_RUN
+		<set>
+			<if test="userId != null">
+				user_id = #{userId, jdbcType=VARCHAR},
+			</if>
+			<if test="runType != null">
+				run_type = #{runType, jdbcType=VARCHAR},
+			</if>
+			<if test="durationTime != null">
+				duration_time = #{durationTime, jdbcType=TINYINT},
+			</if>
+			<if test="distance != null">
+				distance = #{distance, jdbcType=INTEGER},
+			</if>
+			<if test="address != null">
+				address = #{address, jdbcType=VARCHAR},
+			</if>
+			<if test="runTime != null">
+				run_time = #{runTime, jdbcType=TIMESTAMP},
+			</if>
+			<if test="year != null">
+				year = #{year, jdbcType=INTEGER},
+			</if>
+			<if test="month != null">
+				month = #{month, jdbcType=TINYINT},
+			</if>
+			<if test="day != null">
+				day = #{day, jdbcType=TINYINT},
+			</if>
+			<if test="week != null">
+				week = #{week, jdbcType=TINYINT},
+			</if>
+		</set>
+
+		where id = #{id, jdbcType=BIGINT}
+	</update>
+
+	<delete id="delete" parameterType="java.lang.Long">
+		DELETE FROM life_run WHERE id
+		= #{id, jdbcType=BIGINT}
+	</delete>
+
+	<select id="get" parameterType="java.lang.Long" resultMap="BaseResultMap">
+		SELECT
+		<include refid="Base_Column_List" />
+		FROM life_run WHERE id = #{id, jdbcType=BIGINT}
+	</select>
+
+
+	<select id="getAll" resultMap="BaseResultMap">
+		SELECT
+		<include refid="Base_Column_List" />
+		FROM life_run
+	</select>
+
+	<select id="findByYearAndWeek" resultMap="BaseResultMap"
+		parameterType="java.util.Map">
+		SELECT
+		<include refid="Base_Column_List" />
+		FROM life_run
+		WHERE user_id = #{userId, jdbcType=VARCHAR}
+		and year = #{year, jdbcType=INTEGER}
+		and week = #{week, jdbcType=TINYINT}
+	</select>
+
+	<select id="findByYearAndMonth" resultMap="BaseResultMap"
+		parameterType="java.util.Map">
+		SELECT
+			<include refid="Base_Column_List" />
+		FROM life_run
+		WHERE user_id = #{userId, jdbcType=VARCHAR}
+		and year = #{year, jdbcType=INTEGER}
+		and month = #{month, jdbcType=TINYINT}
+	</select>
+
+	<select id="findByYearAndQuarter" resultMap="BaseResultMap"
+		parameterType="java.util.Map">
+		SELECT
+			<include refid="Base_Column_List" />
+		FROM life_run
+		WHERE user_id = #{userId, jdbcType=VARCHAR}
+		and year = #{year, jdbcType=INTEGER}
+		and month in (${quarter})
+	</select>
+
+	<select id="groupByYearAndWeek" resultMap="GroupByYearAndWeekMap"
+		parameterType="java.util.Map">
+		select 
+			week, sum(distance) totalDistance, sum(duration_time) totalTime 
+		from life_run
+		where user_id = #{userId, jdbcType=VARCHAR}
+		  and year = #{year, jdbcType=INTEGER}
+	 group by year, week order by week asc
+	</select>
+
+	<select id="groupByYearAndMonth" resultMap="GroupByYearAndMonthMap"
+		parameterType="java.util.Map">
+		select 
+			month, sum(distance) totalDistance, sum(duration_time) totalTime 
+		from life_run
+		where user_id = #{userId, jdbcType=VARCHAR}
+		  and year = #{year, jdbcType=INTEGER}
+	 group by year, month order by month asc
+	</select>
+	
+	<select id="findByDay" resultMap="BaseResultMap"
+		parameterType="java.util.Map">
+		select 
+			<include refid="Base_Column_List" /> 
+		from life_run
+		where user_id = #{userId, jdbcType=VARCHAR}
+	      and run_time between #{startTime} and #{endTime}
+	</select>
+	
+	<select id="findByYear" resultMap="BaseResultMap"
+		parameterType="java.util.Map">
+		select 
+			<include refid="Base_Column_List" /> 
+		from life_run
+		where user_id = #{userId, jdbcType=VARCHAR}
+	      and year = #{year, jdbcType=INTEGER}
+	      order by month, day
+	</select>
+
+</mapper>

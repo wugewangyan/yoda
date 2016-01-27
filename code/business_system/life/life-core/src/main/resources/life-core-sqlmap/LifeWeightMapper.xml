@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="LifeWeight">
+	<resultMap id="BaseResultMap" type="com.napoleon.life.core.entity.LifeWeight">
+	    <id column="id" property="id" jdbcType="BIGINT"/>
+			<result column="user_id" property="userId" jdbcType="VARCHAR"/>
+			<result column="weight" property="weight" jdbcType="DECIMAL"/>
+			<result column="bmi" property="bmi" jdbcType="VARCHAR"/>
+			<result column="measurement_time" property="measurementTime" jdbcType="TIMESTAMP"/>
+			<result column="year" property="year" jdbcType="TINYINT"/>
+			<result column="month" property="month" jdbcType="TINYINT"/>
+			<result column="day" property="day" jdbcType="TINYINT"/>
+			<result column="week" property="week" jdbcType="TINYINT"/>
+  	</resultMap>
+  	
+  	<sql id = "Base_Column_List">
+		id, user_id, weight, bmi, measurement_time, year, month, day, week
+	</sql>
+	
+	<insert id="insert" parameterType="com.napoleon.life.core.entity.LifeWeight" useGeneratedKeys="true" keyProperty="id">
+		 INSERT INTO life_weight ( user_id, weight, bmi, measurement_time, year, month, day, week  )  VALUES( #{userId, jdbcType=VARCHAR}, #{weight, jdbcType=DECIMAL}, #{bmi, jdbcType=VARCHAR}, #{measurementTime, jdbcType=TIMESTAMP}, #{year, jdbcType=TINYINT}, #{month, jdbcType=TINYINT}, #{day, jdbcType=TINYINT}, #{week, jdbcType=TINYINT}  ) 
+	</insert>
+	
+	<update id="update" parameterType="com.napoleon.life.core.entity.LifeWeight">
+		update LIFE_WEIGHT
+		 <set>
+			<if test="userId != null" >
+		        user_id = #{userId, jdbcType=VARCHAR},
+		    </if>
+			<if test="weight != null" >
+		        weight = #{weight, jdbcType=DECIMAL},
+		    </if>
+			<if test="bmi != null" >
+		        bmi = #{bmi, jdbcType=VARCHAR},
+		    </if>
+			<if test="measurementTime != null" >
+		        measurement_time = #{measurementTime, jdbcType=TIMESTAMP},
+		    </if>
+			<if test="year != null" >
+		        year = #{year, jdbcType=TINYINT},
+		    </if>
+			<if test="month != null" >
+		        month = #{month, jdbcType=TINYINT},
+		    </if>
+			<if test="day != null" >
+		        day = #{day, jdbcType=TINYINT},
+		    </if>
+			<if test="week != null" >
+		        week = #{week, jdbcType=TINYINT},
+		    </if>
+		</set>
+		
+		 where id = #{id, jdbcType=BIGINT}
+	</update>
+	
+	<delete id="delete" parameterType="java.lang.Long">
+		 DELETE FROM life_weight WHERE id = #{id, jdbcType=BIGINT}
+	</delete>
+	
+	<select id="get" parameterType="java.lang.Long" resultMap="BaseResultMap">
+		 SELECT <include refid="Base_Column_List" /> FROM life_weight WHERE id = #{id, jdbcType=BIGINT}
+	</select>
+	 
+	 
+	<select id="getAll" resultMap="BaseResultMap">
+		 SELECT <include refid="Base_Column_List" /> FROM life_weight
+	</select>
+	
+</mapper>

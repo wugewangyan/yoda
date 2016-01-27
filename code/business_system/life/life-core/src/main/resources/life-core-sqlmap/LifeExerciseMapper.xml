@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="LifeExercise">
+	<resultMap id="BaseResultMap" type="com.napoleon.life.core.entity.LifeExercise">
+	    <id column="id" property="id" jdbcType="BIGINT"/>
+			<result column="user_id" property="userId" jdbcType="VARCHAR"/>
+			<result column="exercise_type" property="exerciseType" jdbcType="VARCHAR"/>
+			<result column="amount" property="amount" jdbcType="TINYINT"/>
+			<result column="unit" property="unit" jdbcType="VARCHAR"/>
+			<result column="group_amount" property="groupAmount" jdbcType="TINYINT"/>
+			<result column="exercise_time" property="exerciseTime" jdbcType="TIMESTAMP"/>
+			<result column="year" property="year" jdbcType="TINYINT"/>
+			<result column="month" property="month" jdbcType="TINYINT"/>
+			<result column="day" property="day" jdbcType="TINYINT"/>
+			<result column="week" property="week" jdbcType="TINYINT"/>
+  	</resultMap>
+  	
+  	<sql id = "Base_Column_List">
+		id, user_id, exercise_type, amount, unit, group_amount, exercise_time, year, month, day, week
+	</sql>
+	
+	<insert id="insert" parameterType="com.napoleon.life.core.entity.LifeExercise" useGeneratedKeys="true" keyProperty="id">
+		 INSERT INTO life_exercise ( user_id, exercise_type, amount, unit, group_amount, exercise_time, year, month, day, week  )  VALUES( #{userId, jdbcType=VARCHAR}, #{exerciseType, jdbcType=VARCHAR}, #{amount, jdbcType=TINYINT}, #{unit, jdbcType=VARCHAR}, #{groupAmount, jdbcType=TINYINT}, #{exerciseTime, jdbcType=TIMESTAMP}, #{year, jdbcType=TINYINT}, #{month, jdbcType=TINYINT}, #{day, jdbcType=TINYINT}, #{week, jdbcType=TINYINT}  ) 
+	</insert>
+	
+	<update id="update" parameterType="com.napoleon.life.core.entity.LifeExercise">
+		update LIFE_EXERCISE
+		 <set>
+			<if test="userId != null" >
+		        user_id = #{userId, jdbcType=VARCHAR},
+		    </if>
+			<if test="exerciseType != null" >
+		        exercise_type = #{exerciseType, jdbcType=VARCHAR},
+		    </if>
+			<if test="amount != null" >
+		        amount = #{amount, jdbcType=TINYINT},
+		    </if>
+			<if test="unit != null" >
+		        unit = #{unit, jdbcType=VARCHAR},
+		    </if>
+			<if test="groupAmount != null" >
+		        group_amount = #{groupAmount, jdbcType=TINYINT},
+		    </if>
+			<if test="exerciseTime != null" >
+		        exercise_time = #{exerciseTime, jdbcType=TIMESTAMP},
+		    </if>
+			<if test="year != null" >
+		        year = #{year, jdbcType=TINYINT},
+		    </if>
+			<if test="month != null" >
+		        month = #{month, jdbcType=TINYINT},
+		    </if>
+			<if test="day != null" >
+		        day = #{day, jdbcType=TINYINT},
+		    </if>
+			<if test="week != null" >
+		        week = #{week, jdbcType=TINYINT},
+		    </if>
+		</set>
+		
+		 where id = #{id, jdbcType=BIGINT}
+	</update>
+	
+	<delete id="delete" parameterType="java.lang.Long">
+		 DELETE FROM life_exercise WHERE id = #{id, jdbcType=BIGINT}
+	</delete>
+	
+	<select id="get" parameterType="java.lang.Long" resultMap="BaseResultMap">
+		 SELECT <include refid="Base_Column_List" /> FROM life_exercise WHERE id = #{id, jdbcType=BIGINT}
+	</select>
+	 
+	 
+	<select id="getAll" resultMap="BaseResultMap">
+		 SELECT <include refid="Base_Column_List" /> FROM life_exercise
+	</select>
+	
+</mapper>

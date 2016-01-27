@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="LifeBasketball">
+	<resultMap id="BaseResultMap" type="com.napoleon.life.core.entity.LifeBasketball">
+	    <id column="id" property="id" jdbcType="BIGINT"/>
+			<result column="user_id" property="userId" jdbcType="VARCHAR"/>
+			<result column="start_time" property="startTime" jdbcType="TIMESTAMP"/>
+			<result column="finish_time" property="finishTime" jdbcType="TIMESTAMP"/>
+			<result column="address" property="address" jdbcType="VARCHAR"/>
+  	</resultMap>
+  	
+  	<sql id = "Base_Column_List">
+		id, user_id, start_time, finish_time, address
+	</sql>
+	
+	<insert id="insert" parameterType="com.napoleon.life.core.entity.LifeBasketball" useGeneratedKeys="true" keyProperty="id">
+		 INSERT INTO life_basketball ( user_id, start_time, finish_time, address  )  VALUES( #{userId, jdbcType=VARCHAR}, #{startTime, jdbcType=TIMESTAMP}, #{finishTime, jdbcType=TIMESTAMP}, #{address, jdbcType=VARCHAR}  ) 
+	</insert>
+	
+	<update id="update" parameterType="com.napoleon.life.core.entity.LifeBasketball">
+		update LIFE_BASKETBALL
+		 <set>
+			<if test="userId != null" >
+		        user_id = #{userId, jdbcType=VARCHAR},
+		    </if>
+			<if test="startTime != null" >
+		        start_time = #{startTime, jdbcType=TIMESTAMP},
+		    </if>
+			<if test="finishTime != null" >
+		        finish_time = #{finishTime, jdbcType=TIMESTAMP},
+		    </if>
+			<if test="address != null" >
+		        address = #{address, jdbcType=VARCHAR},
+		    </if>
+		</set>
+		
+		 where id = #{id, jdbcType=BIGINT}
+	</update>
+	
+	<delete id="delete" parameterType="java.lang.Long">
+		 DELETE FROM life_basketball WHERE id = #{id, jdbcType=BIGINT}
+	</delete>
+	
+	<select id="get" parameterType="java.lang.Long" resultMap="BaseResultMap">
+		 SELECT <include refid="Base_Column_List" /> FROM life_basketball WHERE id = #{id, jdbcType=BIGINT}
+	</select>
+	 
+	 
+	<select id="getAll" resultMap="BaseResultMap">
+		 SELECT <include refid="Base_Column_List" /> FROM life_basketball
+	</select>
+	
+</mapper>
