@@ -23,10 +23,16 @@
 	<zkclient-version>0.5</zkclient-version>
 	<curator-version>2.8.0</curator-version>
 	<zookeeper-version>3.4.6</zookeeper-version>
+	
+	<bouncycastle-version>1.5.3</bouncycastle-version>
+	<echarts-version>2.2.6</echarts-version>
+	<kaptcha-version>2.3.2</kaptcha-version>
 
 	<log4j2-version>2.3</log4j2-version>
 	<slf4j-api-version>1.7.12</slf4j-api-version>
 	<commons-logging-version>1.2</commons-logging-version>
+	<commons-io-version>1.3.2</commons-io-version>
+	<commons-lang-version>2.6</commons-lang-version>
 	<commons-httpclient-version>4.4.1</commons-httpclient-version>
 	<commons-httpmime-version>4.4.1</commons-httpmime-version>
 	<commons-codec-version>1.9</commons-codec-version>
@@ -249,6 +255,12 @@
 				<artifactId>commons-logging</artifactId>
 				<version>${commons-logging-version}</version>
 			</dependency>
+			
+			<dependency>
+				<artifactId>commons-lang</artifactId>
+				<groupId>commons-lang</groupId>
+				<version>${commons-lang-version}</version>
+			</dependency>
 
 			<!-- jdbc driver -->
 			<dependency>
@@ -267,6 +279,12 @@
 				<groupId>commons-fileupload</groupId>
 				<artifactId>commons-fileupload</artifactId>
 				<version>${commons-fileupload-version}</version>
+				<exclusions>
+					<exclusion>
+						<groupId>commons-io</groupId>
+						<artifactId>commons-io</artifactId>
+					</exclusion>
+				</exclusions>
 			</dependency>
 			<dependency>
 				<groupId>org.apache.httpcomponents</groupId>
@@ -285,7 +303,11 @@
 				<version>${commons-codec-version}</version>
 			</dependency>
 
-			<!-- hessian dependency -->
+			<dependency>
+				<groupId>org.apache.commons</groupId>
+				<artifactId>commons-io</artifactId>
+				<version>${commons-io-version}</version>
+			</dependency>
 
 			<!-- email dependency -->
 			<dependency>
@@ -359,6 +381,24 @@
 				<groupId>org.apache.zookeeper</groupId>
 				<artifactId>zookeeper</artifactId>
 				<version>${zookeeper-version}</version>
+			</dependency>
+			
+			<dependency>
+				<groupId>org.bouncycastle.jce.provider</groupId>
+				<artifactId>bouncycastle</artifactId>
+				<version>${bouncycastle-version}</version>
+			</dependency>
+			
+			<dependency>
+				<groupId>com.github.abel533</groupId>
+				<artifactId>ECharts</artifactId>
+				<version>${echarts-version}</version>
+			</dependency>
+			
+			<dependency>
+				<groupId>com.napoleon.life.3rd</groupId>
+				<artifactId>kaptcha</artifactId>
+				<version>${kaptcha-version}</version>
 			</dependency>
 
 			<!-- testing dependencies -->

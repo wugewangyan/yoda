@@ -65,7 +65,9 @@ public class LifeEmailServiceImpl implements LifeEmailService {
 			throw new LifeException(e);
 		}finally{
 			try {
-				transport.close();
+				if(transport != null){
+					transport.close();
+				}
 			} catch (MessagingException e) {
 				throw new LifeException(e);
 			}

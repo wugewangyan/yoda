@@ -117,14 +117,8 @@
 		<!-- commons dependencies -->
 
 		<dependency>
-			<groupId>commons-fileupload</groupId>
-			<artifactId>commons-fileupload</artifactId>
-		</dependency>
-
-		<dependency>
 			<groupId>com.github.abel533</groupId>
 			<artifactId>ECharts</artifactId>
-			<version>2.2.6</version>
 		</dependency>
 		
 		<dependency>
@@ -140,7 +134,6 @@
 		<dependency>
 			<groupId>com.napoleon.life.3rd</groupId>
 			<artifactId>kaptcha</artifactId>
-			<version>2.3.2</version>
 		</dependency>
 		
 		<dependency>
@@ -169,30 +162,6 @@
 				<configuration>
 					<skip>true</skip>
 				</configuration>
-			</plugin>
-			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-shade-plugin</artifactId>
-				<executions>
-					<execution>
-						<phase>package</phase>
-						<goals>
-							<goal>shade</goal>
-						</goals>
-						<configuration>
-							<transformers>
-								<transformer
-									implementation="org.apache.maven.plugins.shade.resource.AppendingTransformer">
-									<resource>META-INF/spring.handlers</resource>
-								</transformer>
-								<transformer
-									implementation="org.apache.maven.plugins.shade.resource.AppendingTransformer">
-									<resource>META-INF/spring.schemas</resource>
-								</transformer>
-							</transformers>
-						</configuration>
-					</execution>
-				</executions>
 			</plugin>
 		</plugins>
 		<resources>
