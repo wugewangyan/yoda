@@ -6,7 +6,7 @@ import org.apache.commons.codec.binary.Base64;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import com.napoleon.life.common.util.exception.LifeUtilException;
+import com.napoleon.life.exception.CommonException;
 
 /**
  * 加密工具
@@ -75,7 +75,7 @@ public class EncryptUtil {
 
 			return result;
 		} catch (Exception e) {
-			throw new LifeUtilException(e);
+			throw new CommonException(e);
 		}
 	}
 

@@ -20,6 +20,24 @@
 
 	<dependencies>
 		<dependency>
+			<groupId>com.napoleon.life</groupId>
+			<artifactId>common-user</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>com.napoleon.life</groupId>
+			<artifactId>common-persistence</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>com.napoleon.life</groupId>
+			<artifactId>common-util</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>com.napoleon.life</groupId>
+  			<artifactId>common-framework</artifactId>
+		</dependency>
+
+		
+		<dependency>
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-core</artifactId>
 		</dependency>
@@ -68,16 +86,7 @@
 			<groupId>org.mybatis</groupId>
 			<artifactId>mybatis</artifactId>
 		</dependency>
-
-		<dependency>
-			<groupId>com.napoleon.life</groupId>
-			<artifactId>common-persistence</artifactId>
-		</dependency>
-
-		<dependency>
-			<groupId>com.napoleon.life</groupId>
-			<artifactId>common-util</artifactId>
-		</dependency>
+		
 		<dependency>
 			<groupId>commons-logging</groupId>
 			<artifactId>commons-logging</artifactId>
@@ -115,7 +124,6 @@
 		</dependency>
 
 		<!-- commons dependencies -->
-
 		<dependency>
 			<groupId>com.github.abel533</groupId>
 			<artifactId>ECharts</artifactId>
@@ -132,8 +140,9 @@
 		</dependency>
 		
 		<dependency>
-			<groupId>com.napoleon.life.3rd</groupId>
-			<artifactId>kaptcha</artifactId>
+			<groupId>com.taobao</groupId>
+			<artifactId>taobao-sdk-sms</artifactId>
+			<version>2.0.0</version>
 		</dependency>
 		
 		<dependency>
@@ -163,6 +172,17 @@
 					<skip>true</skip>
 				</configuration>
 			</plugin>
+			<plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>2.3.2</version>
+                <configuration>
+                    <debug>true</debug>
+                    <source>1.7</source>
+                    <target>1.7</target>
+                    <encoding>UTF-8</encoding>
+                </configuration>
+            </plugin>
 		</plugins>
 		<resources>
 			<resource>

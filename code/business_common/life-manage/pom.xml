@@ -44,7 +44,7 @@
 	<servlet-api-version>3.0.1</servlet-api-version>
 	<quartz-scheduler-version>2.2.1</quartz-scheduler-version>
 	<!-- redis cache -->
-	<jedis-version>2.7.2</jedis-version>
+	<jedis-version>2.7.3</jedis-version>
 	<spring-data-redis-version>1.5.0.RELEASE</spring-data-redis-version>
 	<!-- email properties -->
 	<mail-version>1.4.5</mail-version>
@@ -69,6 +69,12 @@
 	<maven-surefire-plugin-version>2.11</maven-surefire-plugin-version>
 	<maven-javadoc-plugin-version>2.8.1</maven-javadoc-plugin-version>
 	<maven-source-plugin-version>2.4</maven-source-plugin-version>
+	
+	<common-exception-verion>0.0.1-SNAPSHOT</common-exception-verion>
+	<common-framework-version>0.0.1-SNAPSHOT</common-framework-version>
+	<common-persistence-version>0.0.1-SNAPSHOT</common-persistence-version>
+	<common-user-version>0.0.1-SNAPSHOT</common-user-version>
+	<common-util-version>0.0.1-SNAPSHOT</common-util-version>
   </properties>
   
   <distributionManagement>
@@ -84,6 +90,18 @@
 	
 	<dependencyManagement>
 		<dependencies>
+			<dependency>
+			<groupId>com.napoleon.life</groupId>
+			<artifactId>common-exception</artifactId>
+			<version>${common-exception-verion}</version>
+		</dependency>
+		
+		<dependency>
+			<groupId>com.napoleon.life</groupId>
+			<artifactId>common-util</artifactId>
+			<version>${common-util-version}</version>
+		</dependency>
+		
 			<!-- Spring dependencies -->
 			<dependency>
 				<groupId>org.springframework.retry</groupId>
@@ -414,6 +432,25 @@
 				<version>${mockito-version}</version>
 				<scope>test</scope>
 			</dependency>
+			
+			<dependency>
+				<groupId>com.napoleon.life</groupId>
+				<artifactId>common-framework</artifactId>
+				<version>${common-framework-version}</version>
+			</dependency>
+			
+			<dependency>
+				<groupId>com.napoleon.life</groupId>
+				<artifactId>common-persistence</artifactId>
+				<version>${common-persistence-version}</version>
+			</dependency>
+			
+			<dependency>
+				<groupId>com.napoleon.life</groupId>
+				<artifactId>common-user</artifactId>
+				<version>${common-user-version}</version>
+			</dependency>
+			
 		</dependencies>
 	</dependencyManagement>
 	

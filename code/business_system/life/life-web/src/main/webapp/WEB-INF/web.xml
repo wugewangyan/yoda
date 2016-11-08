@@ -7,7 +7,7 @@
     <context-param>
 		<param-name>contextConfigLocation</param-name>
 		<param-value>
-			classpath*:/life-core-spring/applicationContext-*.xml
+			classpath*:spring/applicationContext-*.xml
 		</param-value>
 	</context-param>
     
@@ -15,25 +15,8 @@
     <listener>
 		<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
 	</listener>
-    
-    <!-- springMVC配置开始 -->
-    <servlet>
-    	<servlet-name>lifeServlet</servlet-name>
-    	<servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
-   		<init-param>
-   			<param-name>contextConfigLocation</param-name>
-   			<param-value>classpath:lifemvc-servlet.xml</param-value>
-   		</init-param>
-   		<load-on-startup>1</load-on-startup>
-    </servlet>
-    
-    <servlet-mapping>
-    	<servlet-name>lifeServlet</servlet-name>
-    	<url-pattern>/life/*</url-pattern>
-    </servlet-mapping>
-    <!-- springMVC配置结束 -->
-    
-    <!-- Character Encoding filter -->
+	
+	<!-- Character Encoding filter -->
     <filter>
         <filter-name>encodingFilter</filter-name>
         <filter-class>org.springframework.web.filter.CharacterEncodingFilter</filter-class>
@@ -50,6 +33,23 @@
         <filter-name>encodingFilter</filter-name>
         <url-pattern>/*</url-pattern>
     </filter-mapping>
+    
+    <!-- springMVC配置开始 -->
+    <servlet>
+    	<servlet-name>lifeServlet</servlet-name>
+    	<servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+   		<init-param>
+   			<param-name>contextConfigLocation</param-name>
+   			<param-value>classpath*:spring/*-servlet.xml</param-value>
+   		</init-param>
+   		<load-on-startup>1</load-on-startup>
+    </servlet>
+    
+    <servlet-mapping>
+    	<servlet-name>lifeServlet</servlet-name>
+    	<url-pattern>/*</url-pattern>
+    </servlet-mapping>
+    <!-- springMVC配置结束 -->
     
     <welcome-file-list>
 		<welcome-file>login.html</welcome-file>

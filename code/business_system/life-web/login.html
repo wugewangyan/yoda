@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>登陆</title>
+</head>
+<body>
+    <div class="chart">
+        <div id="yearRunDetail" style="height: 500px; width: 100%;"></div>
+    </div>
+
+<!-- jQuery 2.1.4 -->
+<script src="js/jQuery-2.1.4.min.js"></script>
+<script src="js/echarts-all.js"></script>
+<script>
+    $(function () {
+        $.getJSON("life/run/findYearRunDetail?year=2015", function (data) {
+            var detailChart = echarts.init(document.getElementById('yearRunDetail'));
+            detailChart.setOption(data);
+        });
+    });
+</script>
+</body>
+</html>

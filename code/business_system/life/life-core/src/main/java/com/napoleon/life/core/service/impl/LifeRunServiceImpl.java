@@ -36,12 +36,16 @@ import com.napoleon.life.core.dao.LifeRunDao;
 import com.napoleon.life.core.entity.LifeRun;
 import com.napoleon.life.core.service.LifeRunService;
 import com.napoleon.life.core.util.EChartOptionUtil;
+import com.napoleon.life.user.service.CommonUserService;
 
 @Service
 public class LifeRunServiceImpl implements LifeRunService {
 
 	@Autowired
 	private LifeRunDao lifeRunDao;
+	
+	@Autowired
+	private CommonUserService userService;
 
 	/**
 	 * 查询某位用户在某年某月的跑步情况

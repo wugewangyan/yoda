@@ -22,9 +22,13 @@
 	<properties>
 		<springframework.version>4.1.6.RELEASE</springframework.version>
 		<junit.version>4.10</junit.version>
+		
 		<life.core.version>0.0.1-SNAPSHOT</life.core.version>
 		<life.api.version>0.0.1-SNAPSHOT</life.api.version>
+		
+		<life.framework.version>0.0.1-SNAPSHOT</life.framework.version>
 		<life.common.persistence>0.0.1-SNAPSHOT</life.common.persistence>
+		<common-user-version>0.0.1-SNAPSHOT</common-user-version>
 		<life.util.version>0.0.1-SNAPSHOT</life.util.version>
 	</properties>
 
@@ -53,6 +57,18 @@
 				<groupId>com.napoleon.life</groupId>
 				<artifactId>common-util</artifactId>
 				<version>${life.util.version}</version>
+			</dependency>
+			
+			<dependency>
+				<groupId>com.napoleon.life</groupId>
+	  			<artifactId>common-framework</artifactId>
+	  			<version>${life.framework.version}</version>
+			</dependency>
+			
+			<dependency>
+				<groupId>com.napoleon.life</groupId>
+				<artifactId>common-user</artifactId>
+				<version>${common-user-version}</version>
 			</dependency>
 		</dependencies>
 	</dependencyManagement>

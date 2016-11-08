@@ -12,7 +12,7 @@ import java.util.List;
 import com.napoleon.life.common.util.ClassUtil;
 import com.napoleon.life.common.util.StringUtil;
 import com.napoleon.life.common.util.context.ContextUtil;
-import com.napoleon.life.common.util.exception.LifeUtilException;
+import com.napoleon.life.exception.CommonException;
 
 public class BaseValidator {
 
@@ -204,7 +204,7 @@ public class BaseValidator {
 		return true;
 	}
 	
-	public static String validate(Object validatedObj, boolean entrance)throws LifeUtilException{
+	public static String validate(Object validatedObj, boolean entrance)throws CommonException{
 		List<ValidateResult> validateResults = new ArrayList<ValidateResult>();
 		validate(validatedObj, validatedObj.getClass(), validateResults, entrance);
 		return serializeErr(validateResults);
@@ -213,9 +213,9 @@ public class BaseValidator {
 
 	public static void validate(Object validatedObj, Class<?> validatedClazz,
 			List<ValidateResult> validateResults, boolean entrance)
-			throws LifeUtilException {
+			throws CommonException {
 		if (null == validatedObj || null == validateResults) {
-			throw new LifeUtilException(
+			throw new CommonException(
 					"The validated Object and ErrorResult Container can not be null.");
 		}
 
@@ -263,10 +263,10 @@ public class BaseValidator {
 //								String.format(
 //										"cannot invoke the method %s for the Object %s",
 //										method.getName(), validatedObj));
-						throw new LifeUtilException(e);
+						throw new CommonException(e);
 					}
 				} else {
-					throw new LifeUtilException(String.format(
+					throw new CommonException(String.format(
 							"Could not find the getter method: [%s]",
 							field.getName()));
 				}
